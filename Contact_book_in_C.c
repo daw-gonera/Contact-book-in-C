@@ -14,7 +14,25 @@ typedef struct Contact
     struct Contact *next;
 } Contact;
 
-void add_contact(){
+void add_contact(Contact **head){   // **head to change *head so that it can see the next contact
+
+    // Create a new contact node
+    // The struct definition doesn't reserve memory on its own, which is why we need malloc
+    Contact *new = malloc(sizeof(Contact));
+
+    // the pointer next in the contact new is pointing at NULL
+    new -> next = NULL;
+
+    // Read user input from the terminal
+    scanf("%49s", new->first_name);
+    scanf("%49s", new->last_name);
+    scanf("%19s", new->phone_number);
+    scanf("%99s", new->email);
+
+
+    // new contact attach at the front
+    new -> next = *head; 
+    *head = new;
 
 }
 
@@ -31,6 +49,8 @@ Contact* search_contact(){
 }
 
 int main (){
+
+    Contact *head = NULL; //pointer at the first Contact
 
     return 0;
 }
